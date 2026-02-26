@@ -1,0 +1,492 @@
+[0m00:30:25.964886 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78ad2dfa8d00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78ad2e05ed40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78ad2d0dbee0>]}
+
+
+============================== 00:30:25.972025 | 41b4666c-dfe2-4123-b803-dc91c54959a3 ==============================
+[0m00:30:25.972025 [info ] [MainThread]: Running with dbt=1.11.6
+[0m00:30:25.974326 [debug] [MainThread]: running dbt with arguments {'debug': 'False', 'target_path': 'None', 'use_colors': 'True', 'indirect_selection': 'eager', 'log_format': 'default', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'introspect': 'True', 'log_path': 'logs', 'cache_selected_only': 'False', 'partial_parse': 'True', 'quiet': 'False', 'printer_width': '80', 'use_experimental_parser': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt run --profiles-dir .', 'log_cache_events': 'False', 'empty': 'False', 'no_print': 'None', 'write_json': 'True', 'profiles_dir': '.', 'static_parser': 'True'}
+[0m00:30:25.976609 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /app/dbt_project/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m00:30:25.980865 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.13603985, "process_in_blocks": "81456", "process_kernel_time": 0.658376, "process_mem_max_rss": "94984", "process_out_blocks": "560", "process_user_time": 2.434752}
+[0m00:30:25.982627 [debug] [MainThread]: Command `dbt run` failed at 00:30:25.982429 after 0.14 seconds
+[0m00:30:25.984186 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78ad2dfa8d00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78ad2d0a7220>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78ad2d0a6b00>]}
+[0m00:30:25.986098 [debug] [MainThread]: Flushing usage events
+[0m00:30:26.366496 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:31:47.232272 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e30314a30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2f41ea10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2f41efb0>]}
+
+
+============================== 00:31:47.239956 | 56a74d94-1004-4dd9-be3e-31120c3bcd21 ==============================
+[0m00:31:47.239956 [info ] [MainThread]: Running with dbt=1.11.6
+[0m00:31:47.242234 [debug] [MainThread]: running dbt with arguments {'log_path': '/app/dbt_project/logs', 'profiles_dir': '.', 'invocation_command': 'dbt run --profiles-dir .', 'fail_fast': 'False', 'cache_selected_only': 'False', 'write_json': 'True', 'printer_width': '80', 'quiet': 'False', 'log_format': 'default', 'indirect_selection': 'eager', 'partial_parse': 'True', 'log_cache_events': 'False', 'no_print': 'None', 'static_parser': 'True', 'warn_error': 'None', 'target_path': 'None', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'empty': 'False', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True'}
+[0m00:31:47.668332 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '56a74d94-1004-4dd9-be3e-31120c3bcd21', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2fce32e0>]}
+[0m00:31:47.793082 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '56a74d94-1004-4dd9-be3e-31120c3bcd21', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2fd0eef0>]}
+[0m00:31:47.796914 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m00:31:47.998055 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m00:31:48.004317 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m00:31:48.006341 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '56a74d94-1004-4dd9-be3e-31120c3bcd21', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2db15150>]}
+[0m00:31:49.841661 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.montreal_methane.stg_methane_comparison' (models/stg_methane_comparison.sql) depends on a source named 'raw_data.openaq_methane' which was not found
+[0m00:31:49.846639 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.7545516, "process_in_blocks": "95696", "process_kernel_time": 0.623716, "process_mem_max_rss": "110956", "process_out_blocks": "16", "process_user_time": 4.698128}
+[0m00:31:49.848588 [debug] [MainThread]: Command `dbt run` failed at 00:31:49.848366 after 2.76 seconds
+[0m00:31:49.850186 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e30314a30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2cfeabc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c1e2cfeb580>]}
+[0m00:31:49.851686 [debug] [MainThread]: Flushing usage events
+[0m00:31:50.245576 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:40:23.557759 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x784426298a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x784425386800>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x784425386e30>]}
+
+
+============================== 01:40:23.565121 | 0b95172d-81b2-4e50-9f3b-e5b1ffe24db6 ==============================
+[0m01:40:23.565121 [info ] [MainThread]: Running with dbt=1.11.6
+[0m01:40:23.567586 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'debug': 'False', 'log_cache_events': 'False', 'log_format': 'default', 'version_check': 'True', 'log_path': '/app/dbt_project/logs', 'indirect_selection': 'eager', 'introspect': 'True', 'use_colors': 'True', 'no_print': 'None', 'empty': 'False', 'invocation_command': 'dbt run --profiles-dir .', 'cache_selected_only': 'False', 'write_json': 'True', 'printer_width': '80', 'partial_parse': 'True', 'fail_fast': 'False', 'quiet': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'profiles_dir': '.', 'use_experimental_parser': 'False'}
+[0m01:40:23.963568 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0b95172d-81b2-4e50-9f3b-e5b1ffe24db6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x784426365870>]}
+[0m01:40:24.092526 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '0b95172d-81b2-4e50-9f3b-e5b1ffe24db6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x784425437dc0>]}
+[0m01:40:24.097269 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m01:40:24.287205 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m01:40:24.293799 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m01:40:24.295577 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '0b95172d-81b2-4e50-9f3b-e5b1ffe24db6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78442488a4d0>]}
+[0m01:40:26.157440 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.montreal_methane.stg_methane_comparison' (models/stg_methane_comparison.sql) depends on a source named 'raw_data.satellite_methane' which was not found
+[0m01:40:26.162289 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.7463162, "process_in_blocks": "50624", "process_kernel_time": 0.535567, "process_mem_max_rss": "111044", "process_out_blocks": "0", "process_user_time": 4.755191}
+[0m01:40:26.164324 [debug] [MainThread]: Command `dbt run` failed at 01:40:26.164055 after 2.75 seconds
+[0m01:40:26.165904 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x784426298a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7844235e3d30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7844235e3b50>]}
+[0m01:40:26.167373 [debug] [MainThread]: Flushing usage events
+[0m01:40:26.476362 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:43:33.773644 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7377477f8a30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7377466daa10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7377466da740>]}
+
+
+============================== 01:43:33.780679 | daf0a5b3-8281-4538-8f14-6f3967a606f8 ==============================
+[0m01:43:33.780679 [info ] [MainThread]: Running with dbt=1.11.6
+[0m01:43:33.782782 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt run --profiles-dir .', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'indirect_selection': 'eager', 'target_path': 'None', 'warn_error': 'None', 'empty': 'False', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'debug': 'False', 'use_colors': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'partial_parse': 'True', 'log_path': '/app/dbt_project/logs', 'static_parser': 'True', 'printer_width': '80', 'introspect': 'True', 'log_cache_events': 'False', 'log_format': 'default', 'profiles_dir': '.'}
+[0m01:43:34.196735 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'daf0a5b3-8281-4538-8f14-6f3967a606f8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x737746fab2e0>]}
+[0m01:43:34.322116 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'daf0a5b3-8281-4538-8f14-6f3967a606f8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x737746fd6ef0>]}
+[0m01:43:34.325562 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m01:43:34.523967 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m01:43:34.529809 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m01:43:34.531674 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'daf0a5b3-8281-4538-8f14-6f3967a606f8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73774666d930>]}
+[0m01:43:36.452810 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.montreal_methane.stg_methane_comparison' (models/stg_methane_comparison.sql) depends on a source named 'raw_data.openaq_methane' which was not found
+[0m01:43:36.458075 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.8202784, "process_in_blocks": "95704", "process_kernel_time": 0.66882, "process_mem_max_rss": "110760", "process_out_blocks": "0", "process_user_time": 4.713784}
+[0m01:43:36.459962 [debug] [MainThread]: Command `dbt run` failed at 01:43:36.459700 after 2.82 seconds
+[0m01:43:36.461429 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7377477f8a30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73774459eb30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73774459e590>]}
+[0m01:43:36.463143 [debug] [MainThread]: Flushing usage events
+[0m01:43:36.785611 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:45:17.811609 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e74a84a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e73b8f4f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e73b8f190>]}
+
+
+============================== 01:45:17.818717 | 2fb452f8-b1a3-43de-b81e-445c3a9cb3de ==============================
+[0m01:45:17.818717 [info ] [MainThread]: Running with dbt=1.11.6
+[0m01:45:17.820836 [debug] [MainThread]: running dbt with arguments {'fail_fast': 'False', 'printer_width': '80', 'use_colors': 'True', 'debug': 'False', 'cache_selected_only': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'warn_error': 'None', 'profiles_dir': '.', 'use_experimental_parser': 'False', 'write_json': 'True', 'version_check': 'True', 'log_cache_events': 'False', 'introspect': 'True', 'log_path': '/app/dbt_project/logs', 'quiet': 'False', 'log_format': 'default', 'no_print': 'None', 'indirect_selection': 'eager', 'invocation_command': 'dbt run --profiles-dir .', 'send_anonymous_usage_stats': 'True', 'target_path': 'None', 'partial_parse': 'True'}
+[0m01:45:18.244248 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '2fb452f8-b1a3-43de-b81e-445c3a9cb3de', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e7666a920>]}
+[0m01:45:18.370630 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '2fb452f8-b1a3-43de-b81e-445c3a9cb3de', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e73bf0fd0>]}
+[0m01:45:18.373740 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m01:45:18.568720 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m01:45:18.574158 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m01:45:18.576224 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '2fb452f8-b1a3-43de-b81e-445c3a9cb3de', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e72d4f820>]}
+[0m01:45:20.459471 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.montreal_methane.stg_methane_comparison' (models/stg_methane_comparison.sql) depends on a source named 'raw_data.satellite_methane' which was not found
+[0m01:45:20.464246 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.7910533, "process_in_blocks": "95896", "process_kernel_time": 0.716763, "process_mem_max_rss": "110848", "process_out_blocks": "0", "process_user_time": 4.741978}
+[0m01:45:20.466596 [debug] [MainThread]: Command `dbt run` failed at 01:45:20.466283 after 2.79 seconds
+[0m01:45:20.468898 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e74a84a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e71debe20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x704e71debb80>]}
+[0m01:45:20.471029 [debug] [MainThread]: Flushing usage events
+[0m01:45:21.162520 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:46:24.559111 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7911a1104970>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7911a0f7bb50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7911a001e440>]}
+
+
+============================== 01:46:24.565119 | 1b4eb622-39de-4112-adda-0224ddb9f860 ==============================
+[0m01:46:24.565119 [info ] [MainThread]: Running with dbt=1.11.6
+[0m01:46:24.567408 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'log_cache_events': 'False', 'printer_width': '80', 'invocation_command': 'dbt run --profiles-dir .', 'quiet': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'debug': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_path': '/app/dbt_project/logs', 'indirect_selection': 'eager', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'empty': 'False', 'partial_parse': 'True', 'log_format': 'default', 'write_json': 'True', 'static_parser': 'True', 'profiles_dir': '.', 'warn_error': 'None'}
+[0m01:46:24.898645 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1b4eb622-39de-4112-adda-0224ddb9f860', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79119ff7b310>]}
+[0m01:46:25.025598 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '1b4eb622-39de-4112-adda-0224ddb9f860', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7911a0873d60>]}
+[0m01:46:25.029469 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m01:46:25.260892 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m01:46:25.266260 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m01:46:25.268294 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '1b4eb622-39de-4112-adda-0224ddb9f860', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79119ef0ac80>]}
+[0m01:46:27.083925 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.montreal_methane.stg_methane_comparison' (models/stg_methane_comparison.sql) depends on a source named 'raw_data.openaq_methane' which was not found
+[0m01:46:27.088187 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.667569, "process_in_blocks": "0", "process_kernel_time": 0.579522, "process_mem_max_rss": "111340", "process_out_blocks": "0", "process_user_time": 4.616194}
+[0m01:46:27.090594 [debug] [MainThread]: Command `dbt run` failed at 01:46:27.090339 after 2.67 seconds
+[0m01:46:27.092433 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7911a1104970>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79119dba3cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79119dba39d0>]}
+[0m01:46:27.094208 [debug] [MainThread]: Flushing usage events
+[0m01:46:27.415740 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:48:05.338621 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980b1f8a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980a0de770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980a0dee60>]}
+
+
+============================== 01:48:05.346056 | 4a354ba5-f0c0-49fd-9b71-83b190906e00 ==============================
+[0m01:48:05.346056 [info ] [MainThread]: Running with dbt=1.11.6
+[0m01:48:05.348313 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'use_colors': 'True', 'quiet': 'False', 'log_format': 'default', 'cache_selected_only': 'False', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'partial_parse': 'True', 'log_cache_events': 'False', 'write_json': 'True', 'invocation_command': 'dbt run --profiles-dir .', 'printer_width': '80', 'empty': 'False', 'use_experimental_parser': 'False', 'introspect': 'True', 'fail_fast': 'False', 'static_parser': 'True', 'warn_error': 'None', 'profiles_dir': '.', 'debug': 'False', 'log_path': '/app/dbt_project/logs', 'no_print': 'None'}
+[0m01:48:05.776387 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980cbee980>]}
+[0m01:48:05.900257 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980b0c7490>]}
+[0m01:48:05.903567 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m01:48:06.096047 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m01:48:06.101139 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m01:48:06.103053 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980a0df5e0>]}
+[0m01:48:08.390129 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7598057b8c10>]}
+[0m01:48:08.557343 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt_project/target/manifest.json
+[0m01:48:08.571842 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt_project/target/semantic_manifest.json
+[0m01:48:08.636537 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x759805632d10>]}
+[0m01:48:08.638581 [info ] [MainThread]: Found 1 model, 2 sources, 464 macros
+[0m01:48:08.640526 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x759805632cb0>]}
+[0m01:48:08.644567 [info ] [MainThread]: 
+[0m01:48:08.647299 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m01:48:08.649068 [info ] [MainThread]: 
+[0m01:48:08.651257 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m01:48:08.654514 [debug] [ThreadPool]: Acquiring new postgres connection 'list_montreal_methane'
+[0m01:48:08.778267 [debug] [ThreadPool]: Using postgres connection "list_montreal_methane"
+[0m01:48:08.780361 [debug] [ThreadPool]: On list_montreal_methane: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "connection_name": "list_montreal_methane"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m01:48:08.781931 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:48:08.848755 [debug] [ThreadPool]: SQL status: SELECT 7 in 0.067 seconds
+[0m01:48:08.852470 [debug] [ThreadPool]: On list_montreal_methane: Close
+[0m01:48:08.856399 [debug] [ThreadPool]: Acquiring new postgres connection 'list_montreal_methane_public'
+[0m01:48:08.868316 [debug] [ThreadPool]: Using postgres connection "list_montreal_methane_public"
+[0m01:48:08.870350 [debug] [ThreadPool]: On list_montreal_methane_public: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "connection_name": "list_montreal_methane_public"} */
+select
+      'montreal_methane' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'montreal_methane' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'montreal_methane' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m01:48:08.871749 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:48:08.904817 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.033 seconds
+[0m01:48:08.908190 [debug] [ThreadPool]: On list_montreal_methane_public: ROLLBACK
+[0m01:48:08.909828 [debug] [ThreadPool]: On list_montreal_methane_public: Close
+[0m01:48:08.919929 [debug] [MainThread]: Using postgres connection "master"
+[0m01:48:08.921785 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m01:48:08.923300 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m01:48:08.954616 [debug] [MainThread]: SQL status: SELECT 0 in 0.031 seconds
+[0m01:48:08.957748 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x759805793850>]}
+[0m01:48:08.959483 [debug] [MainThread]: On master: ROLLBACK
+[0m01:48:08.960989 [debug] [MainThread]: On master: COMMIT
+[0m01:48:08.962277 [debug] [MainThread]: Using postgres connection "master"
+[0m01:48:08.963924 [debug] [MainThread]: On master: COMMIT
+[0m01:48:08.965872 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m01:48:08.967149 [debug] [MainThread]: On master: Close
+[0m01:48:08.984945 [debug] [Thread-1 (]: Began running node model.montreal_methane.stg_methane_comparison
+[0m01:48:08.987158 [info ] [Thread-1 (]: 1 of 1 START sql table model public.stg_methane_comparison ..................... [RUN]
+[0m01:48:08.989340 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_montreal_methane_public, now model.montreal_methane.stg_methane_comparison)
+[0m01:48:08.991107 [debug] [Thread-1 (]: Began compiling node model.montreal_methane.stg_methane_comparison
+[0m01:48:09.007793 [debug] [Thread-1 (]: Writing injected SQL for node "model.montreal_methane.stg_methane_comparison"
+[0m01:48:09.028550 [debug] [Thread-1 (]: Began executing node model.montreal_methane.stg_methane_comparison
+[0m01:48:09.105410 [debug] [Thread-1 (]: Writing runtime sql for node "model.montreal_methane.stg_methane_comparison"
+[0m01:48:09.128422 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m01:48:09.130457 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+
+  
+    
+
+  create  table "montreal_methane"."public"."stg_methane_comparison__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    sat.timestamp AS satellite_time,
+    sen.timestamp AS sensor_time,
+    sat.ch4_column_volume AS satellite_ch4,
+    sen.ch4_measurement AS sensor_ch4,
+    ABS(sat.ch4_column_volume - sen.ch4_measurement) AS ch4_variance,
+    sen.geom AS sensor_location,
+    sat.geom AS satellite_footprint
+FROM "montreal_methane"."public"."satellite_methane" sat
+JOIN "montreal_methane"."public"."openaq_methane" sen
+  -- Spatial Join: Matches the point geometry inside the polygon geometry
+  ON ST_Contains(sat.geom, sen.geom)
+-- Compare readings from the same date
+WHERE sat.timestamp::date = sen.timestamp::date
+  );
+  
+[0m01:48:09.132122 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m01:48:09.235659 [debug] [Thread-1 (]: SQL status: SELECT 0 in 0.103 seconds
+[0m01:48:09.254264 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m01:48:09.256519 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+alter table "montreal_methane"."public"."stg_methane_comparison__dbt_tmp" rename to "stg_methane_comparison"
+[0m01:48:09.259217 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m01:48:09.285513 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: COMMIT
+[0m01:48:09.287668 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m01:48:09.289722 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: COMMIT
+[0m01:48:09.294033 [debug] [Thread-1 (]: SQL status: COMMIT in 0.002 seconds
+[0m01:48:09.306941 [debug] [Thread-1 (]: Applying DROP to: "montreal_methane"."public"."stg_methane_comparison__dbt_backup"
+[0m01:48:09.316140 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m01:48:09.317791 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+drop table if exists "montreal_methane"."public"."stg_methane_comparison__dbt_backup" cascade
+[0m01:48:09.320909 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.001 seconds
+[0m01:48:09.326377 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: Close
+[0m01:48:09.331143 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4a354ba5-f0c0-49fd-9b71-83b190906e00', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x759804a571f0>]}
+[0m01:48:09.333547 [info ] [Thread-1 (]: 1 of 1 OK created sql table model public.stg_methane_comparison ................ [[32mSELECT 0[0m in 0.34s]
+[0m01:48:09.335845 [debug] [Thread-1 (]: Finished running node model.montreal_methane.stg_methane_comparison
+[0m01:48:09.339656 [debug] [MainThread]: On master: COMMIT
+[0m01:48:09.341291 [debug] [MainThread]: Using postgres connection "master"
+[0m01:48:09.342984 [debug] [MainThread]: On master: COMMIT
+[0m01:48:09.344350 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m01:48:09.360711 [debug] [MainThread]: SQL status: COMMIT in 0.016 seconds
+[0m01:48:09.362400 [debug] [MainThread]: On master: Close
+[0m01:48:09.364007 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m01:48:09.365817 [debug] [MainThread]: Connection 'list_montreal_methane' was properly closed.
+[0m01:48:09.367184 [debug] [MainThread]: Connection 'model.montreal_methane.stg_methane_comparison' was properly closed.
+[0m01:48:09.368691 [info ] [MainThread]: 
+[0m01:48:09.370378 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.72 seconds (0.72s).
+[0m01:48:09.372719 [debug] [MainThread]: Command end result
+[0m01:48:09.528491 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt_project/target/manifest.json
+[0m01:48:09.538549 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt_project/target/semantic_manifest.json
+[0m01:48:09.557247 [debug] [MainThread]: Wrote artifact RunExecutionResult to /app/dbt_project/target/run_results.json
+[0m01:48:09.558927 [info ] [MainThread]: 
+[0m01:48:09.560721 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m01:48:09.562544 [info ] [MainThread]: 
+[0m01:48:09.564347 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m01:48:09.568702 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.4087973, "process_in_blocks": "105704", "process_kernel_time": 0.792315, "process_mem_max_rss": "126412", "process_out_blocks": "72", "process_user_time": 5.773156}
+[0m01:48:09.570930 [debug] [MainThread]: Command `dbt run` succeeded at 01:48:09.570644 after 4.41 seconds
+[0m01:48:09.572795 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980b1f8a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x759807baace0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75980bd5d930>]}
+[0m01:48:09.574725 [debug] [MainThread]: Flushing usage events
+[0m01:48:09.897613 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m03:56:41.616852 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4f0704ca0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4ef62b730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4ef62b160>]}
+
+
+============================== 03:56:41.623216 | 253823c0-afdb-4c0a-9662-a50d0052f839 ==============================
+[0m03:56:41.623216 [info ] [MainThread]: Running with dbt=1.11.6
+[0m03:56:41.625500 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'fail_fast': 'False', 'no_print': 'None', 'introspect': 'True', 'profiles_dir': '.', 'debug': 'False', 'empty': 'False', 'log_format': 'default', 'version_check': 'True', 'indirect_selection': 'eager', 'static_parser': 'True', 'write_json': 'True', 'log_path': '/app/dbt_project/logs', 'use_colors': 'True', 'target_path': 'None', 'log_cache_events': 'False', 'warn_error': 'None', 'printer_width': '80', 'cache_selected_only': 'False', 'invocation_command': 'dbt run --profiles-dir .', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False'}
+[0m03:56:42.029161 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4efee2380>]}
+[0m03:56:42.158260 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4ef656a70>]}
+[0m03:56:42.297684 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m03:56:42.496724 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m03:56:42.834651 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 2 files changed.
+[0m03:56:42.837386 [debug] [MainThread]: Partial parsing: updated file: montreal_methane://models/sources.yml
+[0m03:56:42.839335 [debug] [MainThread]: Partial parsing: updated file: montreal_methane://models/stg_methane_comparison.sql
+[0m03:56:43.684437 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4d6b98130>]}
+[0m03:56:43.851459 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt_project/target/manifest.json
+[0m03:56:43.862151 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt_project/target/semantic_manifest.json
+[0m03:56:43.922893 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4d6a24af0>]}
+[0m03:56:43.924969 [info ] [MainThread]: Found 1 model, 2 sources, 464 macros
+[0m03:56:43.927090 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4d6a24b50>]}
+[0m03:56:43.932082 [info ] [MainThread]: 
+[0m03:56:43.934281 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m03:56:43.936185 [info ] [MainThread]: 
+[0m03:56:43.938649 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m03:56:43.941865 [debug] [ThreadPool]: Acquiring new postgres connection 'list_montreal_methane'
+[0m03:56:44.071740 [debug] [ThreadPool]: Using postgres connection "list_montreal_methane"
+[0m03:56:44.073922 [debug] [ThreadPool]: On list_montreal_methane: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "connection_name": "list_montreal_methane"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m03:56:44.075305 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m03:56:44.097286 [debug] [ThreadPool]: SQL status: SELECT 7 in 0.022 seconds
+[0m03:56:44.100828 [debug] [ThreadPool]: On list_montreal_methane: Close
+[0m03:56:44.103974 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_montreal_methane, now list_montreal_methane_public)
+[0m03:56:44.115733 [debug] [ThreadPool]: Using postgres connection "list_montreal_methane_public"
+[0m03:56:44.117296 [debug] [ThreadPool]: On list_montreal_methane_public: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "connection_name": "list_montreal_methane_public"} */
+select
+      'montreal_methane' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'montreal_methane' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'montreal_methane' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m03:56:44.118582 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m03:56:44.140999 [debug] [ThreadPool]: SQL status: SELECT 7 in 0.022 seconds
+[0m03:56:44.144288 [debug] [ThreadPool]: On list_montreal_methane_public: ROLLBACK
+[0m03:56:44.145943 [debug] [ThreadPool]: On list_montreal_methane_public: Close
+[0m03:56:44.156803 [debug] [MainThread]: Using postgres connection "master"
+[0m03:56:44.158713 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m03:56:44.160050 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m03:56:44.184406 [debug] [MainThread]: SQL status: SELECT 0 in 0.024 seconds
+[0m03:56:44.187293 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4d6a12500>]}
+[0m03:56:44.188916 [debug] [MainThread]: On master: ROLLBACK
+[0m03:56:44.190591 [debug] [MainThread]: On master: COMMIT
+[0m03:56:44.191952 [debug] [MainThread]: Using postgres connection "master"
+[0m03:56:44.193189 [debug] [MainThread]: On master: COMMIT
+[0m03:56:44.195217 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m03:56:44.196688 [debug] [MainThread]: On master: Close
+[0m03:56:44.212061 [debug] [Thread-1 (]: Began running node model.montreal_methane.stg_methane_comparison
+[0m03:56:44.214225 [info ] [Thread-1 (]: 1 of 1 START sql table model public.stg_methane_comparison ..................... [RUN]
+[0m03:56:44.216291 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_montreal_methane_public, now model.montreal_methane.stg_methane_comparison)
+[0m03:56:44.217977 [debug] [Thread-1 (]: Began compiling node model.montreal_methane.stg_methane_comparison
+[0m03:56:44.233885 [debug] [Thread-1 (]: Writing injected SQL for node "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.245365 [debug] [Thread-1 (]: Began executing node model.montreal_methane.stg_methane_comparison
+[0m03:56:44.324144 [debug] [Thread-1 (]: Writing runtime sql for node "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.337644 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.339631 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+
+  
+    
+
+  create  table "montreal_methane"."public"."stg_methane_comparison__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    sat.timestamp AS satellite_time,
+    sen.timestamp AS sensor_time,
+    sat.ch4_column_volume AS satellite_ch4,
+    sen.parameter AS sensor_parameter,
+    sen.measurement_value AS sensor_ch4,
+    sen.unit AS sensor_unit,
+    ABS(sat.ch4_column_volume - sen.measurement_value) AS ch4_variance,
+    sen.geom AS sensor_location,
+    sat.geom AS satellite_footprint
+FROM "montreal_methane"."public"."satellite_methane" sat
+JOIN "montreal_methane"."public"."openaq_data" sen
+  ON ST_Contains(sat.geom, sen.geom)
+WHERE sat.timestamp::date = sen.timestamp::date
+  );
+  
+[0m03:56:44.341452 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m03:56:44.397182 [debug] [Thread-1 (]: SQL status: SELECT 144 in 0.055 seconds
+[0m03:56:44.416026 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.417873 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+alter table "montreal_methane"."public"."stg_methane_comparison" rename to "stg_methane_comparison__dbt_backup"
+[0m03:56:44.420093 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m03:56:44.426558 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.428006 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+alter table "montreal_methane"."public"."stg_methane_comparison__dbt_tmp" rename to "stg_methane_comparison"
+[0m03:56:44.429883 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m03:56:44.459584 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: COMMIT
+[0m03:56:44.462417 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.464186 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: COMMIT
+[0m03:56:44.468073 [debug] [Thread-1 (]: SQL status: COMMIT in 0.002 seconds
+[0m03:56:44.480006 [debug] [Thread-1 (]: Applying DROP to: "montreal_methane"."public"."stg_methane_comparison__dbt_backup"
+[0m03:56:44.488887 [debug] [Thread-1 (]: Using postgres connection "model.montreal_methane.stg_methane_comparison"
+[0m03:56:44.490529 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "montreal_methane", "target_name": "dev", "node_id": "model.montreal_methane.stg_methane_comparison"} */
+drop table if exists "montreal_methane"."public"."stg_methane_comparison__dbt_backup" cascade
+[0m03:56:44.510089 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.018 seconds
+[0m03:56:44.515856 [debug] [Thread-1 (]: On model.montreal_methane.stg_methane_comparison: Close
+[0m03:56:44.521062 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '253823c0-afdb-4c0a-9662-a50d0052f839', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4d6b987f0>]}
+[0m03:56:44.523172 [info ] [Thread-1 (]: 1 of 1 OK created sql table model public.stg_methane_comparison ................ [[32mSELECT 144[0m in 0.30s]
+[0m03:56:44.525789 [debug] [Thread-1 (]: Finished running node model.montreal_methane.stg_methane_comparison
+[0m03:56:44.529900 [debug] [MainThread]: On master: COMMIT
+[0m03:56:44.531455 [debug] [MainThread]: Using postgres connection "master"
+[0m03:56:44.532766 [debug] [MainThread]: On master: COMMIT
+[0m03:56:44.534168 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m03:56:44.550332 [debug] [MainThread]: SQL status: COMMIT in 0.016 seconds
+[0m03:56:44.552333 [debug] [MainThread]: On master: Close
+[0m03:56:44.554593 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m03:56:44.556442 [debug] [MainThread]: Connection 'model.montreal_methane.stg_methane_comparison' was properly closed.
+[0m03:56:44.558028 [info ] [MainThread]: 
+[0m03:56:44.559643 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.62 seconds (0.62s).
+[0m03:56:44.562071 [debug] [MainThread]: Command end result
+[0m03:56:44.620868 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt_project/target/manifest.json
+[0m03:56:44.630023 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt_project/target/semantic_manifest.json
+[0m03:56:44.648635 [debug] [MainThread]: Wrote artifact RunExecutionResult to /app/dbt_project/target/run_results.json
+[0m03:56:44.650636 [info ] [MainThread]: 
+[0m03:56:44.652819 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m03:56:44.654644 [info ] [MainThread]: 
+[0m03:56:44.656418 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m03:56:44.661126 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 3.2129347, "process_in_blocks": "44296", "process_kernel_time": 1.037976, "process_mem_max_rss": "126788", "process_out_blocks": "648", "process_user_time": 4.517784}
+[0m03:56:44.662974 [debug] [MainThread]: Command `dbt run` succeeded at 03:56:44.662772 after 3.22 seconds
+[0m03:56:44.664625 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4f0704ca0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4d6afb310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ed4f0945cf0>]}
+[0m03:56:44.666622 [debug] [MainThread]: Flushing usage events
+[0m03:56:45.016073 [debug] [MainThread]: An error was encountered while trying to flush usage events

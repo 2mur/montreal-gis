@@ -1,0 +1,7 @@
+data/
+.env
+venv/
+__pycache__/
+.dbt/
+gcp-key.json
+notes.txt

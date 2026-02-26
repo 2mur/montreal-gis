@@ -1,0 +1,43 @@
+services:
+  # The Spatial Database
+  postgis:
+    image: postgis/postgis:15-3.3
+    container_name: montreal_postgis
+    environment:
+      - POSTGRES_USER=gis_user
+      - POSTGRES_PASSWORD=gis_pass
+      - POSTGRES_DB=montreal_methane
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  # Your Python GIS Environment (for running scripts/tests locally)
+  gis-app:
+    build: .
+    container_name: montreal_processor
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      # Mount the key file as read-only
+      - ./gcp-key.json:/app/gcp-key.json:ro 
+    environment:
+      - DB_HOST=postgis
+      - DB_NAME=montreal_methane
+      - DB_USER=gis_user
+      - DB_PASS=gis_pass
+      # Tell the Google Cloud SDK where to find the key
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json
+      - GCS_BUCKET_NAME=${GCS_BUCKET_NAME}
+      - OPENAQ_API_KEY=${OPENAQ_API_KEY}
+      - CLEARML_WEB_HOST=${CLEARML_WEB_HOST}
+      - CLEARML_API_HOST=${CLEARML_API_HOST}
+      - CLEARML_FILES_HOST=${CLEARML_FILES_HOST}
+      - CLEARML_API_ACCESS_KEY=${CLEARML_API_ACCESS_KEY}
+      - CLEARML_API_SECRET_KEY=${CLEARML_API_SECRET_KEY}
+    depends_on:
+      - postgis
+    command: tail -f /dev/null
+
+volumes:
+  pg_data:

@@ -1,0 +1,31 @@
+# Core GIS
+gdal==3.6.2  # Match this to the apt-get version if possible, or leave versionless to pick up compatible wheel
+rasterio
+fiona
+geopandas
+shapely
+xarray
+netCDF4
+rioxarray
+
+# Database & Data
+openaq
+psycopg2-binary
+sqlalchemy
+geoalchemy2
+pandas
+dbt-postgres
+google-cloud-secret-manager 
+google-auth
+
+# Cloud & ML
+google-cloud-storage
+google-cloud-secret-manager
+clearml
+scikit-learn
+
+dagster
+dagster-webserver
+
+#visualization
+folium
