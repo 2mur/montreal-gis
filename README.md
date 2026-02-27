@@ -1,7 +1,3 @@
-Here is the updated `README.md` incorporating the massive UI overhaul, the multi-model ML integration, and a prominent placeholder for your live GCP Cloud Storage link.
-
----
-
 # Montreal GIS Air Quality Project
 
 An automated geospatial data pipeline deployed on Google Cloud Platform (GCP) to ingest, process, and analyze multi-pollutant atmospheric data over Montreal. The system compares Sentinel-5P satellite imagery against OpenAQ terrestrial sensors to detect localized emission anomalies (CH4, NO2, O3, CO, SO2) using an Isolation Forest model and visualizes the results on an interactive map.
