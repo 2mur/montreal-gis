@@ -1,6 +1,14 @@
+Here is the updated `README.md` incorporating the massive UI overhaul, the multi-model ML integration, and a prominent placeholder for your live GCP Cloud Storage link.
+
+---
+
 # Montreal GIS Air Quality Project
 
 An automated geospatial data pipeline deployed on Google Cloud Platform (GCP) to ingest, process, and analyze multi-pollutant atmospheric data over Montreal. The system compares Sentinel-5P satellite imagery against OpenAQ terrestrial sensors to detect localized emission anomalies (CH4, NO2, O3, CO, SO2) using an Isolation Forest model and visualizes the results on an interactive map.
+
+### 🌐 Live Dashboard
+
+**View the real-time anomaly map here:** [`https://storage.cloud.google.com/2mur-montreal-gis-raw/maps/montreal_anomalies_latest.html`]
 
 ## Architecture & Tech Stack
 
@@ -16,10 +24,12 @@ An automated geospatial data pipeline deployed on Google Cloud Platform (GCP) to
 
 This project incorporates several critical fixes for spatial data handling and cloud deployment:
 
+* **Tactical UI & DOM Manipulation:** The standard Folium map is wrapped in a custom HTML/CSS Flexbox architecture featuring a Neon Genesis Evangelion (MAGI) dark-mode aesthetic. JavaScript DOM extraction dynamically relocates native Leaflet layer controls into a dedicated sidebar.
+* **Multi-Model Anomaly Diagnostics:** The pipeline trains and compares three distinct anomaly detection models (Isolation Forest, One-Class SVM, Local Outlier Factor). The dashboard sidebar provides a live, decomposed breakdown of anomaly consensus for every individual gas.
+* **Dynamic Client-Side Charting:** Heavy server-side image generation was stripped out. Satellite swaths are dynamically rendered as native GeoJSON polygons. Sensor popups and sidebar distributions utilize injected Plotly.js to render interactive histograms and `[min - 2σ, max + 2σ]` normalized trend lines directly in the browser.
 * **Multi-Pollutant Z-Score Normalization:** Directly comparing satellite column density to ground-level parts-per-million (PPM) is scientifically invalid. The dbt pipeline uses PostgreSQL window functions to calculate Z-scores for each dataset partitioned by pollutant, allowing machine learning models to analyze standard deviations (`sat_z_score` vs `sen_z_score`) rather than mismatched raw units.
 * **Accurate Spatial Buffering (CRS Projection):** Sentinel-5P pixels are projected into Montreal's local metric coordinate system (UTM Zone 18N / EPSG:32618) before applying a 2500m square buffer (`cap_style=3`), ensuring the physical footprint is accurate before projecting back to global degrees (EPSG:4326) for PostGIS ingestion.
-* **Browser-Side Rendering Optimization:** Heavy server-side image generation (`matplotlib`) was stripped out. Satellite swaths are dynamically rendered as native GeoJSON polygons, and time-series charts are generated client-side using injected Plotly.js code, drastically reducing Docker image size and processing time.
-* **Radial Jitter for Spatial Overlap:** OpenAQ stations often measure multiple gases from the exact same coordinate. The dashboard script applies a mathematical radial offset algorithm (spreading points at 0°, 90°, 180°, etc.) to prevent interactive map markers from completely overlapping.
+* **Map Locking & Radial Jitter:** The map viewport is strictly locked to the Montreal bounding box using `maxBoundsViscosity`. OpenAQ stations measuring multiple gases from the exact same coordinate apply a mathematical radial offset algorithm (spreading points at 0°, 90°, 180°, etc.) to prevent interactive map markers from completely overlapping.
 * **Robust GCP Authentication:** Uses `google.auth.default()` for seamless authentication across local Docker environments (via volume-mounted `gcp-key.json`) and native GCP deployment, seamlessly pushing `.joblib` model artifacts and dashboard HTML to Cloud Storage.
 * **Memory-Safe Processing:** Ephemeral NetCDF files (10-15GB uncompressed) are downloaded using `tempfile`, processed via `xarray`, and strictly purged in `finally` blocks to prevent Cloud Run instances from crashing due to out-of-memory errors.
 
@@ -30,5 +40,3 @@ This project incorporates several critical fixes for spatial data handling and c
 * A registered account on the Copernicus Data Space Ecosystem.
 * An OpenAQ API Key.
 * ClearML account and API credentials.
-
-```
