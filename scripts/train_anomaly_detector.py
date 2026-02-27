@@ -9,7 +9,6 @@ from clearml import Task
 from google.cloud import storage
 import google.auth
 
-
 _, auth_project = google.auth.default()
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", auth_project)
 GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME")
@@ -40,7 +39,6 @@ def train_models():
     logger = task.get_logger()
     contamination_rate = 0.05 
     
-
     storage_client = storage.Client(project=PROJECT_ID) if PROJECT_ID and GCS_BUCKET_NAME else None
 
     # List to hold the dataframes with their new prediction columns
@@ -72,16 +70,23 @@ def train_models():
             )
             print(f"   - {model_name}: {num_anomalies} anomalies detected.")
             
-            # Save the Isolation Forest predictions to the dataframe (-1 is anomaly, 1 is normal)
+            # Save the predictions to the dataframe (-1 is anomaly, 1 is normal)
             if model_name == "Isolation_Forest":
                 pollutant_df['is_anomaly'] = preds == -1
                 
+                # We only save the Isolation Forest joblib for the production pipeline
                 if storage_client:
                     model_filename = f"{pollutant}_isolation_forest.joblib"
                     joblib.dump(model, model_filename)
                     blob = storage_client.bucket(GCS_BUCKET_NAME).blob(f"models/anomaly_detection/{model_filename}")
                     blob.upload_from_filename(model_filename)
                     os.remove(model_filename)
+                    
+            elif model_name == "One_Class_SVM":
+                pollutant_df['is_anomaly_svm'] = preds == -1
+                
+            elif model_name == "Local_Outlier_Factor":
+                pollutant_df['is_anomaly_lof'] = preds == -1
 
         processed_dfs.append(pollutant_df)
 
