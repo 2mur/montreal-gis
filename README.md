@@ -1,57 +1,34 @@
-# Montreal GIS Methane Project
+# Montreal GIS Air Quality Project
 
-An automated geospatial data pipeline deployed on GCP to ingest, process, and analyze methane emissions over Montreal. The system compares Sentinel-5P satellite imagery against OpenAQ terrestrial sensors to detect localized emission anomalies using an Isolation Forest model.
+An automated geospatial data pipeline deployed on Google Cloud Platform (GCP) to ingest, process, and analyze multi-pollutant atmospheric data over Montreal. The system compares Sentinel-5P satellite imagery against OpenAQ terrestrial sensors to detect localized emission anomalies (CH4, NO2, O3, CO, SO2) using an Isolation Forest model and visualizes the results on an interactive map.
 
 ## Architecture & Tech Stack
-* **Data Sources:** Copernicus Data Space Ecosystem (Sentinel-5P NetCDF), OpenAQ (JSON)
-* **Storage:** Google Cloud Storage (Raw data landing zone), PostGIS (Processed spatial geometries)
-* **Processing:** Python (GDAL, Rasterio, GeoPandas, Xarray, Shapely)
-* **Transformation:** dbt (Spatial joins via `ST_Contains` and variance calculations)
-* **Machine Learning:** Isolation Forest (scikit-learn) tracked via ClearML
-* **Orchestration & Deployment:** Airflow, Docker, GCP Artifact Registry, Cloud Run Jobs
 
-## Key Infrastructure Fixes Implemented
-This project incorporates several critical fixes for common GIS and cloud deployment issues:
-* **GDAL/Rasterio Compilation:** The `Dockerfile` uses a multi-stage approach, installing core C-libraries (`libgdal-dev`, `gdal-bin`, `gcc`) before installing Python geospatial requirements to prevent build crashes.
-* **GCP Cloud Build Compatibility:** `Dockerfile` is explicitly excluded from `.gitignore` so that GCP can successfully build the image remotely via Artifact Registry.
-* **Secure Authentication:** Copernicus API credentials are not hardcoded. They are fetched at runtime using **Google Cloud Secret Manager**.
-* **Resilient Ingestion:** The `ingest.py` script utilizes exponential backoff (`urllib3` Retry) to handle Copernicus and OpenAQ gateway timeouts and rate limits (HTTP 429/50x).
-* **Safe Zip Extraction:** Sentinel-5P `.zip` archives containing nested `.SAFE` directories are extracted and cleaned up recursively using `shutil.rmtree` to prevent `OSError` crashes in Cloud Run's ephemeral memory.
-* **OpenAQ Rate Limiting:** Included an `X-API-Key` header fallback for OpenAQ to bypass strict unauthenticated IP blocking.
-* **Local GCP Authentication:** Development uses a dedicated local service account (`gcp-key.json`) mounted as a read-only Docker volume, allowing seamless local testing of Secret Manager and Cloud Storage interactions.
+* **Data Sources:** Copernicus Data Space Ecosystem (Sentinel-5P NetCDF), OpenAQ (CSV)
+* **Storage:** Google Cloud Storage (Raw data landing zone, ML model registry, HTML dashboard hosting), PostGIS (Processed spatial geometries)
+* **Processing:** Python (GeoPandas, Xarray, Shapely, SQLAlchemy)
+* **Transformation:** dbt (Spatial joins via `ST_Contains`, window functions for Z-score normalization)
+* **Machine Learning:** Isolation Forest, OneClassSVM, LocalOutlierFactor (scikit-learn) tracked via ClearML
+* **Visualization:** Folium (Leaflet), Plotly.js (Interactive time-series popups), GeoJSON layer rendering
+* **Orchestration & Deployment:** Docker, GCP Artifact Registry, Cloud Run Jobs
+
+## Key Infrastructure & Data Upgrades Implemented
+
+This project incorporates several critical fixes for spatial data handling and cloud deployment:
+
+* **Multi-Pollutant Z-Score Normalization:** Directly comparing satellite column density to ground-level parts-per-million (PPM) is scientifically invalid. The dbt pipeline uses PostgreSQL window functions to calculate Z-scores for each dataset partitioned by pollutant, allowing machine learning models to analyze standard deviations (`sat_z_score` vs `sen_z_score`) rather than mismatched raw units.
+* **Accurate Spatial Buffering (CRS Projection):** Sentinel-5P pixels are projected into Montreal's local metric coordinate system (UTM Zone 18N / EPSG:32618) before applying a 2500m square buffer (`cap_style=3`), ensuring the physical footprint is accurate before projecting back to global degrees (EPSG:4326) for PostGIS ingestion.
+* **Browser-Side Rendering Optimization:** Heavy server-side image generation (`matplotlib`) was stripped out. Satellite swaths are dynamically rendered as native GeoJSON polygons, and time-series charts are generated client-side using injected Plotly.js code, drastically reducing Docker image size and processing time.
+* **Radial Jitter for Spatial Overlap:** OpenAQ stations often measure multiple gases from the exact same coordinate. The dashboard script applies a mathematical radial offset algorithm (spreading points at 0°, 90°, 180°, etc.) to prevent interactive map markers from completely overlapping.
+* **Robust GCP Authentication:** Uses `google.auth.default()` for seamless authentication across local Docker environments (via volume-mounted `gcp-key.json`) and native GCP deployment, seamlessly pushing `.joblib` model artifacts and dashboard HTML to Cloud Storage.
+* **Memory-Safe Processing:** Ephemeral NetCDF files (10-15GB uncompressed) are downloaded using `tempfile`, processed via `xarray`, and strictly purged in `finally` blocks to prevent Cloud Run instances from crashing due to out-of-memory errors.
 
 ## Prerequisites
+
 * Docker Desktop and WSL2/PowerShell environment.
 * Google Cloud CLI (`gcloud`) installed and authenticated.
 * A registered account on the Copernicus Data Space Ecosystem.
-* An OpenAQ API Key (Free tier).
+* An OpenAQ API Key.
+* ClearML account and API credentials.
 
-## Local Setup & Configuration
-
-### 1. Repository Initialization
-Clone the repository and ensure your `.gitignore` is set up correctly.
-**Crucial:** Do not track `data/`, `.env`, or `gcp-key.json`. Ensure `Dockerfile` is *not* in the `.gitignore`.
-
-### 2. GCP Service Account & Secrets (PowerShell)
-Create a dedicated service account for local testing and set up your Copernicus credentials in Secret Manager:
-
-```powershell
-$PROJECT_ID = "YOUR_EXACT_PROJECT_ID" 
-$SA_EMAIL = "montreal-gis-local@$PROJECT_ID.iam.gserviceaccount.com"
-
-# Create Service Account
-gcloud iam service-accounts create montreal-gis-local --display-name="Montreal GIS Local Testing"
-Start-Sleep -Seconds 10 # Wait for IAM propagation
-
-# Grant Roles
-gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA_EMAIL" --role="roles/secretmanager.secretAccessor"
-gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA_EMAIL" --role="roles/storage.objectAdmin"
-
-# Generate Local Key File (Keep this gitignored!)
-gcloud iam service-accounts keys create gcp-key.json --iam-account=$SA_EMAIL
-
-# Create Secrets
-gcloud secrets create copernicus_username --replication-policy="automatic"
-gcloud secrets create copernicus_password --replication-policy="automatic"
-echo -n "your_email" | gcloud secrets versions add copernicus_username --data-file=-
-echo -n "your_password" | gcloud secrets versions add copernicus_password --data-file=-
+```
