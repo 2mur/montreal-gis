@@ -2,7 +2,8 @@ version: 2
 
 sources:
   - name: raw_data
+    database: montreal_methane
     schema: public
     tables:
-      - name: satellite_methane
+      - name: satellite_measurements
       - name: openaq_data

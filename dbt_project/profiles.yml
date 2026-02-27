@@ -1,12 +1,12 @@
-montreal_methane:
+default:
   target: dev
   outputs:
     dev:
       type: postgres
-      host: "{{ env_var('DB_HOST') }}"
-      user: "{{ env_var('DB_USER') }}"
-      password: "{{ env_var('DB_PASS') }}"
+      host: "{{ env_var('DB_HOST', 'postgis') }}"
+      user: "{{ env_var('DB_USER', 'gis_user') }}"
+      password: "{{ env_var('DB_PASS', 'gis_pass') }}"
       port: 5432
-      dbname: "{{ env_var('DB_NAME') }}"
+      dbname: "{{ env_var('DB_NAME', 'montreal_air_quality') }}"
       schema: public
       threads: 4

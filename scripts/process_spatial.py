@@ -1,6 +1,5 @@
 import os
 import tempfile
-import json
 import xarray as xr
 import pandas as pd
 import geopandas as gpd
@@ -36,65 +35,104 @@ def download_from_gcs(blob_name, suffix):
 
 def process_sentinel5p():
     print("Fetching Sentinel-5P data from GCS...")
-    nc_file_path = download_from_gcs("sentinel-5p/latest.nc", ".nc")
-    
-    if not nc_file_path:
-        return
+    storage_client = storage.Client(project=PROJECT_ID)
+    bucket = storage_client.bucket(GCS_BUCKET_NAME)
+    engine = get_db_engine()
 
-    try:
-        ds = xr.open_dataset(nc_file_path, group='PRODUCT')
-        df = ds['methane_mixing_ratio'][0].to_dataframe().reset_index()
-        df = df.dropna(subset=['methane_mixing_ratio']) 
+    s5p_config = {
+        "ch4": "methane_mixing_ratio_bias_corrected", 
+        "no2": "nitrogendioxide_tropospheric_column",
+        "o3":  "ozone_total_vertical_column",
+        "co":  "carbonmonoxide_total_column",
+        "so2": "sulfurdioxide_total_vertical_column"
+    }
 
-        df = df[
-            (df['longitude'] >= -73.97) & (df['longitude'] <= -73.47) &
-            (df['latitude'] >= 45.41) & (df['latitude'] <= 45.71)
-        ]
+    for pollutant, var_name in s5p_config.items():
+        blobs = list(bucket.list_blobs(prefix=f"sentinel-5p/{pollutant}/"))
+        if not blobs:
+            continue
+            
+        latest_blob = max(blobs, key=lambda b: b.time_created)
+        _, temp_path = tempfile.mkstemp(suffix=".nc")
+        latest_blob.download_to_filename(temp_path)
 
-        if df.empty:
-            print("No Sentinel-5P data found over Montreal for this pass.")
-            return
+        try:
+            ds = xr.open_dataset(temp_path, group='PRODUCT')
+            
+            if var_name not in ds and pollutant == "ch4":
+                var_name = "methane_mixing_ratio"
 
-        df['timestamp'] = pd.to_datetime(df['time'])
-        df = df.rename(columns={'methane_mixing_ratio': 'ch4_column_volume'})
+            # Explicitly select the variable and the coordinates to prevent KeyErrors
+            ds_subset = ds[[var_name, 'longitude', 'latitude']].isel(time=0)
+            df = ds_subset.to_dataframe().reset_index()
+            
+            df = df.dropna(subset=[var_name, 'longitude', 'latitude'])
 
-        gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.longitude, df.latitude), crs="EPSG:4326")
-        gdf['geom'] = gdf.geometry.buffer(0.025, cap_style=3)
-        gdf = gdf.set_geometry('geom')
-        gdf = gdf[['timestamp', 'ch4_column_volume', 'geom']]
+            df = df[
+                (df['longitude'] >= -73.97) & (df['longitude'] <= -73.47) &
+                (df['latitude'] >= 45.41) & (df['latitude'] <= 45.71)
+            ]
 
-        engine = get_db_engine()
-        gdf.to_postgis('satellite_methane', engine, if_exists='append', index=False)
-        print(f"Successfully loaded {len(gdf)} satellite polygons to PostGIS.")
+            if df.empty:
+                print(f"No Sentinel-5P {pollutant.upper()} data found over Montreal.")
+                continue
 
-    finally:
-        os.remove(nc_file_path)
+            # Some products name the time column differently after reset_index
+            time_col = 'time' if 'time' in df.columns else 'time_utc' if 'time_utc' in df.columns else None
+            df['timestamp'] = pd.to_datetime(df[time_col]) if time_col else pd.Timestamp.now(tz='UTC')
+            
+            df = df.rename(columns={var_name: 'measurement_value'})
+            df['parameter'] = pollutant
+
+            # Create geometries in standard degrees (WGS 84)
+            gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.longitude, df.latitude), crs="EPSG:4326")
+            
+            # Project to Montreal metric (UTM Zone 18N) for accurate buffering
+            gdf = gdf.to_crs(epsg=32618)
+            
+            # Buffer the ACTIVE geometry directly (replaces points with 2500m square polygons)
+            gdf['geometry'] = gdf.geometry.buffer(2500, cap_style=3)
+            
+            # Project the buffered polygons back to EPSG:4326
+            gdf = gdf.to_crs(epsg=4326)
+            
+            # Rename the active geometry column to 'geom' to match the PostGIS table
+            gdf = gdf.rename_geometry('geom')
+            
+            gdf = gdf[['timestamp', 'parameter', 'measurement_value', 'geom']]
+
+            gdf.to_postgis('satellite_measurements', engine, if_exists='append', index=False)
+            print(f"Successfully loaded {len(gdf)} {pollutant.upper()} satellite polygons to PostGIS.")
+
+        except Exception as e:
+            print(f"Error processing {pollutant}: {e}")
+        finally:
+            os.remove(temp_path)
 
 def process_openaq():
     print("Fetching OpenAQ data from GCS...")
-    json_file_path = download_from_gcs("openaq/latest_measurements.json", ".json")
     
-    if not json_file_path:
+    # Changed from JSON to CSV
+    csv_file_path = download_from_gcs("openaq/latest_measurements.csv", ".csv")
+    
+    if not csv_file_path:
         return
 
     try:
-        with open(json_file_path, 'r') as f:
-            data = json.load(f)
-            
-        measurements = data.get("results", [])
-        if not measurements:
+        # Load the flat CSV directly
+        df = pd.read_csv(csv_file_path)
+        
+        if df.empty:
             print("No OpenAQ measurements to process.")
             return
 
-        df = pd.DataFrame(measurements)
-        df['sensor_name'] = df['location']
-        df['measurement_value'] = df['value']
-        df['parameter'] = df['parameter']
-        df['unit'] = df['unit']
-        df['timestamp'] = pd.to_datetime(df['date'].apply(lambda x: x['utc'] if isinstance(x, dict) else x))
+        # Map the new flat CSV columns
+        df = df.rename(columns={
+            'location': 'sensor_name',
+            'value': 'measurement_value'
+        })
         
-        df['lon'] = df['coordinates'].apply(lambda x: x['longitude'] if pd.notnull(x) else None)
-        df['lat'] = df['coordinates'].apply(lambda x: x['latitude'] if pd.notnull(x) else None)
+        df['timestamp'] = pd.to_datetime(df['utc_time'])
         df = df.dropna(subset=['lon', 'lat'])
 
         gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lon, df.lat), crs="EPSG:4326")
@@ -106,8 +144,10 @@ def process_openaq():
         gdf.to_postgis('openaq_data', engine, if_exists='append', index=False)
         print(f"Successfully loaded {len(gdf)} OpenAQ points to PostGIS.")
 
+    except Exception as e:
+        print(f"Error processing OpenAQ: {e}")
     finally:
-        os.remove(json_file_path)
+        os.remove(csv_file_path)
 
 if __name__ == "__main__":
     process_sentinel5p()

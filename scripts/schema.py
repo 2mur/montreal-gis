@@ -5,19 +5,21 @@ from geoalchemy2 import Geometry
 
 Base = declarative_base()
 
-class SatelliteFootprint(Base):
-    __tablename__ = 'satellite_methane'
-    id = Column(Integer, primary_key=True)
+class SatelliteMeasurement(Base):
+    __tablename__ = 'satellite_measurements'
+    id = Column(Integer, primary_key=True, autoincrement=True)
     timestamp = Column(DateTime, nullable=False)
-    ch4_column_volume = Column(Float)
+    parameter = Column(String, nullable=False)
+    measurement_value = Column(Float)
+    # The spatial_index=True creates an R-Tree index in PostGIS for fast spatial queries
     geom = Column(Geometry(geometry_type='POLYGON', srid=4326, spatial_index=True))
 
 class TerrestrialSensor(Base):
     __tablename__ = 'openaq_data'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     sensor_name = Column(String)
     timestamp = Column(DateTime, nullable=False)
-    parameter = Column(String)
+    parameter = Column(String, nullable=False)
     measurement_value = Column(Float)
     unit = Column(String)
     geom = Column(Geometry(geometry_type='POINT', srid=4326, spatial_index=True))
