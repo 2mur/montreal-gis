@@ -341,9 +341,16 @@ def create_anomaly_map():
 
     if storage_client:
         bucket = storage_client.bucket(GCS_BUCKET_NAME)
-        blob = bucket.blob(f"maps/{filename}")
+        blob = bucket.blob("maps/montreal_anomalies_latest.html")
+        
+        # Upload the HTML string
         blob.upload_from_string(dashboard_html, content_type="text/html")
-        print(f"Dashboard uploaded to gs://{GCS_BUCKET_NAME}/maps/{filename}")
+        
+        # Make this specific file publicly readable
+        blob.make_public()
+        
+        print(f"Dashboard uploaded and made public!")
+        print(f"Shareable Link: {blob.public_url}")
     else:
         print("Missing GCP variables. Skipped cloud upload.")
 
